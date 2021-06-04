@@ -59,6 +59,10 @@ export default {
     },
     props: [],
     created() {
+        window.Echo.private('$').listen('SendTask', e => {
+
+
+        });
     }
     ,
     methods: {
