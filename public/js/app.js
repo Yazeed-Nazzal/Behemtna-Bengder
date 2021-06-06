@@ -1916,83 +1916,32 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'SendTask',
   data: function data() {
     return {
-      posts: [],
-      post: ''
+      tasks: [],
+      task: ''
     };
   },
-  props: [],
+  props: ['user_id'],
   created: function created() {
     window.Echo["private"]('$').listen('SendTask', function (e) {});
   },
+  mounted: function mounted() {
+    var _this = this;
+
+    axios.get('/UserTasks/' + this.user_id).then(function (res) {
+      _this.tasks = res.data.tasks;
+      console.log(_this.tasks);
+    });
+  },
   methods: {
-    checkUserSender: function checkUserSender(sender) {
-      return sender == this.user;
-    },
-    setpost: function setpost(data) {
-      this.posts = data;
-    },
-    getClassMainRow: function getClassMainRow(sender) {
-      return {
-        'row sender': sender == this.user,
-        'row': sender != this.user
-      };
-    },
-    getClassFirstRow: function getClassFirstRow(sender) {
-      return {
-        'row justify-content-start w-100 senderFirstRow': sender == this.user,
-        'row justify-content-start w-75 ': sender != this.user
-      };
-    },
-    getClassDateRow: function getClassDateRow(sender) {
-      return {
-        'row justify-content-end text-right': sender != this.user,
-        'row': sender == this.user
-      };
-    },
-    setavatar: function setavatar(url, gender) {
-      if (url != null) {
-        return {
-          backgroundImage: "url(/storage/".concat(url, ")")
-        };
-      } else {
-        if (gender == 'male') {
-          return {
-            backgroundImage: "url(/images/male.png)"
-          };
-        } else {
-          return {
-            backgroundImage: "url(/images/female.png)"
-          };
-        }
-      }
-    },
-    sendPost: function sendPost() {
-      if (this.post != '') {
-        axios.post('/teams/team/post/', {
-          userid: this.user,
-          teamid: this.teamid,
-          post: this.post
-        }).then(function (res) {
-          return res;
-        });
+    SendTask: function SendTask() {
+      if (this.task != '') {
+        axios.post('/SendTask/' + this.user_id, {
+          task: this.task
+        }).then(function (res) {});
       }
 
       this.post = '';
@@ -2034,12 +1983,22 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "ShowTasks",
+  props: ['user_id'],
   data: function data() {
     return {
-      Tasks: {
-        text: "New task"
-      }
+      tasks: []
     };
+  },
+  created: function created() {
+    window.Echo["private"]('$').listen('SendTask', function (e) {});
+  },
+  mounted: function mounted() {
+    var _this = this;
+
+    axios.get('/UserTasks/' + this.user_id).then(function (res) {
+      _this.tasks = res.data.tasks;
+      console.log(_this.tasks);
+    });
   }
 });
 
@@ -2134,9 +2093,9 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 window.Pusher = __webpack_require__(/*! pusher-js */ "./node_modules/pusher-js/dist/web/pusher.js");
 window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__.default({
   broadcaster: 'pusher',
-  key: "",
+  key: "d471866d612a0428c7e4",
   cluster: "mt1",
-  forceTLS: false
+  forceTLS: true
 });
 
 /***/ }),
@@ -43924,71 +43883,33 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", [
     _c("div", { staticClass: "Team-Activity" }, [
-      _c("div", { staticClass: "row Chat-Box" }, [
+      _c("div", { staticStyle: { height: "800px", overflow: "auto" } }, [
         _c(
           "div",
-          { staticClass: "content mx-auto" },
-          _vm._l(_vm.posts, function(post, index) {
-            return _c(
-              "div",
-              { key: index, class: _vm.getClassMainRow(post.user_id) },
-              [
-                _c(
-                  "div",
-                  { staticClass: "col-11 col-lg-8 Team-Post p-2 pr-3 pr-0" },
-                  [
-                    _c("div", { class: _vm.getClassFirstRow(post.user_id) }, [
-                      _c("div", { staticClass: "col-2 mr-5 mr-md-0" }, [
-                        _c("div", {
-                          staticClass: "avatar",
-                          style: _vm.setavatar(
-                            post.user.avatar,
-                            post.user.gender
-                          )
-                        })
-                      ]),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        { staticClass: "col-6 mt-3   text-left pl-0" },
-                        [
-                          _c(
-                            "h5",
-                            {
-                              class: {
-                                "text-right": _vm.checkUserSender(post.user_id)
-                              },
-                              domProps: {
-                                textContent: _vm._s(post.user.fullname)
-                              }
-                            },
-                            [_vm._v("Student 1")]
-                          )
-                        ]
-                      )
-                    ]),
+          { staticClass: "container ", staticStyle: { "padding-top": "7rem" } },
+          _vm._l(_vm.tasks, function(task, index) {
+            return _c("div", { key: index, staticClass: "row Chat-Box mb-2" }, [
+              _c(
+                "div",
+                { staticClass: "card", staticStyle: { width: "100%" } },
+                [
+                  _c("div", { staticClass: "card-body" }, [
+                    _c("h5", { staticClass: "card-title" }, [_vm._v("Task")]),
                     _vm._v(" "),
-                    _c("div", { staticClass: "row justify-content-center" }, [
-                      _c("div", { staticClass: "col-10 pt-3" }, [
-                        _c("p", {
-                          staticClass: "pl-3",
-                          domProps: { textContent: _vm._s(post.content) }
-                        })
-                      ])
-                    ]),
+                    _c("p", {
+                      staticClass: "card-text",
+                      domProps: { textContent: _vm._s(task.task) }
+                    }),
                     _vm._v(" "),
-                    _c("div", { class: _vm.getClassDateRow(post.user_id) }, [
-                      _c("div", { staticClass: "col-4" }, [
-                        _c("p", {
-                          staticClass: "pr-0 ",
-                          domProps: { textContent: _vm._s(post.created_at) }
-                        })
-                      ])
-                    ])
-                  ]
-                )
-              ]
-            )
+                    _c("a", {
+                      staticClass: "card-link",
+                      attrs: { href: "#" },
+                      domProps: { textContent: _vm._s(task.created_at) }
+                    })
+                  ])
+                ]
+              )
+            ])
           }),
           0
         )
@@ -44004,8 +43925,8 @@ var render = function() {
                     {
                       name: "model",
                       rawName: "v-model",
-                      value: _vm.post,
-                      expression: "post"
+                      value: _vm.task,
+                      expression: "task"
                     }
                   ],
                   staticClass: "form-control",
@@ -44014,13 +43935,13 @@ var render = function() {
                     rows: "3",
                     "aria-label": "With textarea"
                   },
-                  domProps: { value: _vm.post },
+                  domProps: { value: _vm.task },
                   on: {
                     input: function($event) {
                       if ($event.target.composing) {
                         return
                       }
-                      _vm.post = $event.target.value
+                      _vm.task = $event.target.value
                     }
                   }
                 })
@@ -44034,7 +43955,7 @@ var render = function() {
             "button",
             {
               staticClass: "btn Edit-Btn w-100 h-100",
-              on: { click: _vm.sendPost }
+              on: { click: _vm.SendTask }
             },
             [_vm._v("Send")]
           )
@@ -44067,26 +43988,28 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("div", { staticClass: "container" }, [
+    _c("div", { staticStyle: { height: "100%", overflow: "hidden" } }, [
       _c(
         "div",
-        { staticClass: "row ", staticStyle: { "margin-top": "100px" } },
-        _vm._l(_vm.Tasks, function(Task, index) {
-          return _c("div", { key: index, staticClass: "col-3" }, [
-            _c(
-              "div",
-              { staticClass: "card", staticStyle: { width: "18rem" } },
-              [
-                _c("div", { staticClass: "card-body" }, [
-                  _c("h5", { staticClass: "card-title" }, [_vm._v("Task ")]),
-                  _vm._v(" "),
-                  _c("p", {
-                    staticClass: "card-text",
-                    domProps: { textContent: _vm._s(Task) }
-                  })
-                ])
-              ]
-            )
+        { staticClass: "container ", staticStyle: { "padding-top": "7rem" } },
+        _vm._l(_vm.tasks, function(task, index) {
+          return _c("div", { key: index, staticClass: "row Chat-Box mb-2" }, [
+            _c("div", { staticClass: "card", staticStyle: { width: "100%" } }, [
+              _c("div", { staticClass: "card-body" }, [
+                _c("h5", { staticClass: "card-title" }, [_vm._v("Task")]),
+                _vm._v(" "),
+                _c("p", {
+                  staticClass: "card-text",
+                  domProps: { textContent: _vm._s(task.task) }
+                }),
+                _vm._v(" "),
+                _c("a", {
+                  staticClass: "card-link",
+                  attrs: { href: "#" },
+                  domProps: { textContent: _vm._s(task.created_at) }
+                })
+              ])
+            ])
           ])
         }),
         0

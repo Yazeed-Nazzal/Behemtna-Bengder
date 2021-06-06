@@ -24,9 +24,10 @@ class SendTask implements ShouldBroadcast
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($user_id , $task)
     {
-        //
+        $this->user_id = $user_id;
+        $this->task    = $task;
     }
 
     /**
@@ -36,6 +37,6 @@ class SendTask implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new PrivateChannel('channel-name');
+        return new PrivateChannel('SendTask');
     }
 }

@@ -96,7 +96,7 @@
                             <a href="{{route('management-user.show',$user->id)}}"><i class="fas fa-eye text-success mt-2"></i></a>
                         </td>
                         <td>
-                            <a href="#"><i class="fas fa-comments text-warning"></i></a>
+                            <a href="/SendTask/{{$user->id}}"><i class="fas fa-comments text-warning"></i></a>
                         </td>
                     </tr>
                     @endforeach

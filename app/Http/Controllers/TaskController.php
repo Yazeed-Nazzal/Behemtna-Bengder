@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\SendTask;
 use App\Models\Task;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -25,7 +26,7 @@ class TaskController extends Controller
      */
     public function create()
     {
-        //
+
     }
 
     /**
@@ -34,9 +35,30 @@ class TaskController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request , User $user)
     {
-        //
+
+        try {
+            Task::create([
+                'user_id'=>$user->id,
+                'task'  => $request->task
+            ]);
+
+            SendTask::dispatch($user->id,$request->task);
+            return response()->json([
+                'code'    => '200',
+                'status' =>'success',
+                'message' => 'task sent'
+
+            ]);
+        }
+        catch (\Exception $e){
+            return response()->json([
+                'code'    => $e->getCode(),
+                'status' =>'failed',
+                'message' => $e->getMessage()
+            ]);
+        }
     }
 
     /**
@@ -48,7 +70,7 @@ class TaskController extends Controller
     public function show(User $user , Request $request)
     {
 
-        return view('admin.Task.SendTask');
+        return view('admin.Task.SendTask',compact('user'));
     }
 
     /**
@@ -83,5 +105,13 @@ class TaskController extends Controller
     public function destroy(Task $task)
     {
         //
+    }
+    public function UserTasks (Request $request , User $user){
+
+            return response()->json([
+               'message' => 'success',
+               'tasks'   => $user->tasks
+            ]);
+
     }
 }

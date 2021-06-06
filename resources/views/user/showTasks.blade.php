@@ -1,5 +1,5 @@
 @extends('layouts.main-layout')
 @section('content')
-  <show-tasks></show-tasks>
+  <show-tasks :user_id="{{auth()->user()->id}}"></show-tasks>
 @endsection
 

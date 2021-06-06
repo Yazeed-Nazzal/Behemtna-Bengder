@@ -24,4 +24,6 @@ Route::get('/management-contact', [App\Http\Controllers\contactController::class
 Route::resource('contact-as', App\Http\Controllers\contactController::class);
 Route::resource('/management-user', App\Http\Controllers\managementUserController::class);
 Route::get('/SendTask/{user}',[\App\Http\Controllers\TaskController::class,'show']);
+Route::post('/SendTask/{user}',[\App\Http\Controllers\TaskController::class,'store']);
 Route::get('/ShowTask',[\App\Http\Controllers\TaskController::class,'index']);
+Route::get('/UserTasks/{user}',[\App\Http\Controllers\TaskController::class,'UserTasks']);

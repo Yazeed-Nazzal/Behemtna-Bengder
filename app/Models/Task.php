@@ -7,5 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Task extends Model
 {
+    protected $casts = [
+        'created_at'  => 'date:Y-m-d h:m',
+    ];
+
+    protected $guarded;
     use HasFactory;
 }
