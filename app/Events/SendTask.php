@@ -37,6 +37,6 @@ class SendTask implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new PrivateChannel('SendTask');
+        return new PrivateChannel('SendTask.'.$this->user_id);
     }
 }

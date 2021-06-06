@@ -18,7 +18,6 @@ use Illuminate\Support\Facades\Broadcast;
 //});
 
 Broadcast::channel('SendTask', function ($user) {
-
-      return true;
+        return true;
 
 });

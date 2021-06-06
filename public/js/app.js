@@ -1926,7 +1926,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   props: ['user_id'],
   created: function created() {
-    window.Echo["private"]('$').listen('SendTask', function (e) {});
+    window.Echo["private"]('SendTask').listen('SendTask', function (e) {});
   },
   mounted: function mounted() {
     var _this = this;

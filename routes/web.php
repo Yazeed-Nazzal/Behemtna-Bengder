@@ -18,7 +18,7 @@ Route::get('/', function () {
 })->name('index');
 
 Auth::routes();
-
+Auth::routes(['verify' => true]);
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('auth');
 Route::get('/management-contact', [App\Http\Controllers\contactController::class, 'management_contact'])->name('management_contact');
 Route::resource('contact-as', App\Http\Controllers\contactController::class);

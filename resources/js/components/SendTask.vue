@@ -45,7 +45,7 @@ export default {
     },
     props: ['user_id'],
     created() {
-        window.Echo.private('$').listen('SendTask', e => {
+        window.Echo.private('SendTask').listen('SendTask', e => {
 
 
         });
