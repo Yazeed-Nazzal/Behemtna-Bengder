@@ -34,13 +34,13 @@
         <div class="container d-flex align-items-center">
 
             <div class="logo me-auto">
-                <h1><a href="index.html"><img src="{{asset('imge/logo.png')}}" alt="logo" style="width:70px;height:70px;max-height:70px;" /></a></h1>
+                <h1><a href="/"><img src="{{asset('imge/logo.png')}}" alt="logo" style="width:70px;height:70px;max-height:70px;" /></a></h1>
 
             </div>
 
             <nav id="navbar" class="navbar order-last order-lg-0 justify-content-center">
                 <ul>
-                    <li><a class="nav-link scrollto active" href="{{route('index')}}">Home</a></li>
+                    <li><a class="nav-link scrollto active" href="/home">Home</a></li>
                     <li><a class="nav-link scrollto" href="{{route('contact-as.index')}}">Contact</a></li>
                     @if (Route::has('login'))
                     @auth
@@ -88,6 +88,7 @@
     <!-- Template Main JS File -->
     <script src="{{asset('assets/js/main.js')}}"></script>
     <script src="{{asset('js/app.js')}}"></script>
+
 
 
 

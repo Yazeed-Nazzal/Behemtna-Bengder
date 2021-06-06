@@ -17,7 +17,14 @@ use Illuminate\Support\Facades\Broadcast;
 //    return (int) $user->id === (int) $id;
 //});
 
-Broadcast::channel('SendTask', function ($user) {
-        return true;
+Broadcast::channel('SendTask.{id}', function ($user,$id) {
+
+       if (auth()->user()->id == $id || auth()->user()->status == 1)
+       {
+           return true;
+       }
+       else{
+           return false;
+       }
 
 });
