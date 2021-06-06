@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Events\SendTask;
 use App\Models\Task;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class TaskController extends Controller
@@ -39,12 +40,13 @@ class TaskController extends Controller
     {
 
         try {
-            Task::create([
+            $task = Task::create([
                 'user_id'=>$user->id,
                 'task'  => $request->task
             ]);
+            $createdAt = Carbon::parse($task['created_at']);
 
-            SendTask::dispatch($user->id,$request->task);
+            SendTask::dispatch($user->id,$request->task,$createdAt->format('Y-m-d h:i'));
             return response()->json([
                 'code'    => '200',
                 'status' =>'success',

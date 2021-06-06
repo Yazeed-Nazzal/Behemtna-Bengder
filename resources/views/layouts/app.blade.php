@@ -47,10 +47,9 @@
     <script src="{{asset('js/all.min.js')}}"></script>
     <!-- Template Main JS File -->
     <script src="{{asset('assets/js/main.js')}}"></script>
-    <script src="{{asset('js/app.js')}}"></script>
 
 
-    <script src="{{asset('js/app.js')}}"></script>
+
 </body>
 
 </html>

@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="Team-Activity" >
-            <div style="height: 800px; overflow: auto">
+            <div class="scroller" style="height: 800px; overflow: auto">
                 <div class="container " style="padding-top: 7rem">
                     <div class="row Chat-Box mb-2" v-for="(task,index) in tasks " :key="index">
                         <div class="card" style="width: 100%;">
@@ -45,9 +45,22 @@ export default {
     },
     props: ['user_id'],
     created() {
-        window.Echo.private('SendTask').listen('SendTask', e => {
+        window.Echo.private('SendTask.'+this.user_id).listen('SendTask', e => {
+
+            let data = {
+                "task" : e.task,
+                "created_at" : e.date
+            }
+            this.tasks.push(data);
+            $(".scroller ").animate({ scrollTop:100000}, 100);
 
 
+            this.$swal({
+                type: "success",
+                title: "Task Sent successfuly",
+                icon: "success",
+
+            });
         });
     },
     mounted() {

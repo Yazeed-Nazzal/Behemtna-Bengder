@@ -16,6 +16,7 @@ class SendTask implements ShouldBroadcast
 
         public $user_id;
         public $task;
+        public $date;
 
 
 
@@ -24,10 +25,11 @@ class SendTask implements ShouldBroadcast
      *
      * @return void
      */
-    public function __construct($user_id , $task)
+    public function __construct($user_id , $task,$date)
     {
         $this->user_id = $user_id;
         $this->task    = $task;
+        $this->date    = $date;
     }
 
     /**

@@ -1,18 +1,20 @@
 <template>
    <div>
-        <div style="height: 100%; overflow: hidden">
-            <div class="container " style="padding-top: 7rem">
-                <div class="row Chat-Box mb-2" v-for="(task,index) in tasks " :key="index">
-                    <div class="card" style="width: 100%;">
-                        <div class="card-body">
-                            <h5 class="card-title">Task</h5>
-                            <p class="card-text" v-text="task.task"></p>
-                            <a href="#" class="card-link" v-text="task.created_at"></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+       <div class="Team-Activity" >
+           <div  class="scroller" style="height: 100%; overflow: auto">
+                   <div class="container " style="padding-top: 7rem">
+                       <div class="row Chat-Box mb-2" v-for="(task,index) in tasks " :key="index">
+                           <div class="card" style="width: 100%;">
+                               <div class="card-body">
+                                   <h5 class="card-title">Task <span v-if="task.status == 'New'" class="btn btn-sm btn-danger">New!</span></h5>
+                                   <p class="card-text" v-text="task.task"></p>
+                                   <a href="#" class="card-link" v-text="task.created_at"></a>
+                               </div>
+                           </div>
+                       </div>
+                   </div>
+           </div>
+       </div>
    </div>
 
 </template>
@@ -27,9 +29,17 @@ name: "ShowTasks",
     }
     },
     created() {
-        window.Echo.private('$').listen('SendTask', e => {
+        window.Echo.private('SendTask.'+this.user_id).listen('SendTask', e => {
 
+            let data = {
+                "task" : e.task,
+                "created_at" : e.date,
+                'status'     :'New'
+            }
+            this.tasks.push(data);
 
+            console.log(data);
+            $(".scroller ").animate({ scrollTop:100000}, 100);
         });
     },
     mounted() {

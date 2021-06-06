@@ -49,10 +49,21 @@
             <a href="https://twitter.com/BeHmtna?s=09" class="twitter"><i class="bi bi-twitter"></i></a>
             <a href="https://www.facebook.com/BeHmtna/" class="facebook"><i class="bi bi-facebook"></i></a>
             <a href="https://instagram.com/bhmtna_bnqdr?igshid=bfj7elosumfp" class="instagram"><i class="bi bi-instagram"></i></a>
-            <a href=" https://t.me/Be9mtna" class="linkedin"><i class="fab fa-telegram"></i></i></a>
+            <a href=" https://t.me/Be9mtna" class="linkedin"><i class="fab fa-telegram"></i></a>
         </div>
 
     </div>
-</header><!-- End Header -->
+    <Notify :user_id="{{auth()->user()->id}}"></Notify>
 
+</header><!-- End Header -->
+<div class="container" style="margin-top: 7rem">
+    <div class="row ">
+        <div class="col-12 text-center">
+            <h1 style="color:#d19c34 ">Welcome Back {{auth()->user()->name}}</h1>
+            <a href="/ShowTask">Check your tasks</a>
+        </div>
+    </div>
+
+</div>
 @endsection
+

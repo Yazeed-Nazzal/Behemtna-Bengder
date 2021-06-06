@@ -5,6 +5,9 @@
  */
 import SendTask from "./components/SendTask";
 import ShowTasks from "./components/ShowTasks";
+import Notify from "./components/Notify";
+import VueSweetalert2 from 'vue-sweetalert2';
+import 'sweetalert2/dist/sweetalert2.min.css';
 require('./bootstrap');
 
 window.Vue = require('vue').default;
@@ -26,11 +29,14 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
+Vue.use(VueSweetalert2);
 
 const app = new Vue({
     el: '#app',
     components: {
         SendTask,
-        ShowTasks
+        ShowTasks,
+        Notify
+
     }
 });
