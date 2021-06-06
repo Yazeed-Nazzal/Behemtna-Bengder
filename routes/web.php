@@ -23,7 +23,9 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/management-contact', [App\Http\Controllers\contactController::class, 'management_contact'])->name('management_contact');
 Route::resource('contact-as', App\Http\Controllers\contactController::class);
 Route::resource('/management-user', App\Http\Controllers\managementUserController::class);
-Route::get('/SendTask/{user}',[\App\Http\Controllers\TaskController::class,'show']);
-Route::post('/SendTask/{user}',[\App\Http\Controllers\TaskController::class,'store']);
-Route::get('/ShowTask',[\App\Http\Controllers\TaskController::class,'index']);
-Route::get('/UserTasks/{user}',[\App\Http\Controllers\TaskController::class,'UserTasks']);
+Route::get('/info', [App\Http\Controllers\HomeController::class, 'info'])->name('info');
+Route::post('/save-info', [App\Http\Controllers\HomeController::class, 'save_info'])->name('save_info');
+Route::get('/SendTask/{user}', [\App\Http\Controllers\TaskController::class, 'show']);
+Route::post('/SendTask/{user}', [\App\Http\Controllers\TaskController::class, 'store']);
+Route::get('/ShowTask', [\App\Http\Controllers\TaskController::class, 'index']);
+Route::get('/UserTasks/{user}', [\App\Http\Controllers\TaskController::class, 'UserTasks']);

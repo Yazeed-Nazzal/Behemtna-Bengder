@@ -15,6 +15,7 @@
         <nav id="navbar" class="navbar order-last order-lg-0 justify-content-center">
             <ul>
                 <li><a class="nav-link scrollto active" href="{{route('home')}}">Home</a></li>
+                <li><a class="nav-link scrollto active" href="{{route('info')}}">Info</a></li>
                 @guest
                 @if (Route::has('login'))
                 <li><a class="nav-link scrollto" href="{{ route('login') }}">Login</a></li>
