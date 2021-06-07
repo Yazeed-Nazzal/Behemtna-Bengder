@@ -6,7 +6,7 @@
                        <div class="row Chat-Box mb-2" v-for="(task,index) in tasks " :key="index">
                            <div class="card" style="width: 100%;">
                                <div class="card-body">
-                                   <h5 class="card-title">Task <span v-if="task.status == 'New'" class="btn btn-sm btn-danger">New!</span></h5>
+                                   <h5 class="card-title">Task <span v-if="task.status == 'New'" class="btn btn-sm btn-danger text-sm">New!</span></h5>
                                    <p class="card-text" v-text="task.task"></p>
                                    <a href="#" class="card-link" v-text="task.created_at"></a>
                                </div>

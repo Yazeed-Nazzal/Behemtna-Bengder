@@ -29,3 +29,5 @@ Route::get('/SendTask/{user}', [\App\Http\Controllers\TaskController::class, 'sh
 Route::post('/SendTask/{user}', [\App\Http\Controllers\TaskController::class, 'store']);
 Route::get('/ShowTask', [\App\Http\Controllers\TaskController::class, 'index']);
 Route::get('/UserTasks/{user}', [\App\Http\Controllers\TaskController::class, 'UserTasks']);
+Route::get('UserApproved/{user}',[\App\Http\Controllers\adminController::class,'store']);
+Route::get('UserBlock/{user}',[\App\Http\Controllers\adminController::class,'destroy']);

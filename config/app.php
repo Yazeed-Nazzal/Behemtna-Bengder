@@ -69,6 +69,7 @@ return [
 
     'timezone' => 'Asia/Amman',
 
+
     /*
     |--------------------------------------------------------------------------
     | Application Locale Configuration

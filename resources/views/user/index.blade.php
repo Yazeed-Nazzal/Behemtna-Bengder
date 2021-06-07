@@ -61,7 +61,11 @@
     <div class="row ">
         <div class="col-12 text-center">
             <h1 style="color:#d19c34 ">Welcome Back {{auth()->user()->name}}</h1>
-            <a href="/ShowTask">Check your tasks</a>
+            @if (auth()->user()->approved)
+                <a href="/ShowTask">Check your tasks</a>
+            @else
+                <p class="btn btn-danger ">Your Task System Is Disabled Waiting For Admin Approve   </p>
+            @endif
         </div>
     </div>
 

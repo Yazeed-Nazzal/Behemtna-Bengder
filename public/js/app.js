@@ -1998,7 +1998,7 @@ __webpack_require__.r(__webpack_exports__);
         }).then(function (res) {});
       }
 
-      this.post = '';
+      this.task = '';
     }
   }
 });
@@ -47956,7 +47956,9 @@ var render = function() {
                           task.status == "New"
                             ? _c(
                                 "span",
-                                { staticClass: "btn btn-sm btn-danger" },
+                                {
+                                  staticClass: "btn btn-sm btn-danger text-sm"
+                                },
                                 [_vm._v("New!")]
                               )
                             : _vm._e()

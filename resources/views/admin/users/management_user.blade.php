@@ -70,7 +70,8 @@
                         <th scope="col" style="color:#d19c34">Email</th>
                         <th scope="col" style="color:#d19c34">Delete</th>
                         <th scope="col" style="color:#d19c34">Show</th>
-                        <th scope="col" style="color:#d19c34">Send Message</th>
+                        <th scope="col" style="color:#d19c34">Send Task</th>
+                        <th scope="col" style="color:#d19c34">Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -96,8 +97,18 @@
                             <a href="{{route('management-user.show',$user->id)}}"><i class="fas fa-eye text-success mt-2"></i></a>
                         </td>
                         <td>
-                            <a href="/SendTask/{{$user->id}}"><i class="fas fa-comments text-warning"></i></a>
+                            @if ($user->approved)
+                                <a href="/SendTask/{{$user->id}}"><i class="fas fa-comments text-warning"></i></a>
+
+                            @else
+                                <p class=" btn btn-sm btn-danger">You Can't Send Tasks Before Approve Member </p>
+                            @endif
                         </td>
+                        @if ($user->approved)
+                            <td><a  href="UserBlock/{{$user->id}}"><i class="fas fa-ban text-danger"></i></a></td>
+                        @else
+                            <td><a href="UserApproved/{{$user->id}}"><i class="fas fa-user-plus text-success"></i></a></td>
+                        @endif
                     </tr>
                     @endforeach
                 </tbody>
