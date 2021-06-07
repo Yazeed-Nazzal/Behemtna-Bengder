@@ -23,7 +23,7 @@ class CreateUserInfosTable extends Migration
             $table->string('mobile');
             $table->string('reason');
             $table->string('team');
-            $table->integer('university_id');
+            $table->bigInteger('university_id');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')
                 ->references('id')

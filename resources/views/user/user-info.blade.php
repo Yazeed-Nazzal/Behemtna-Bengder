@@ -72,7 +72,7 @@
             </div>
             <div class="col-lg-6">
                 <label for="age">Age</label>
-                <input type="number" name="age" class="form-control">
+                <input type="text" name="age" class="form-control">
             </div>
             <div class="col-lg-6">
                 <label for="academic_year">Academic Year</label>
@@ -80,7 +80,7 @@
             </div>
             <div class="col-lg-6">
                 <label for="university_id">University ID</label>
-                <input type="number" name="university_id" class="form-control">
+                <input type="text" name="university_id" class="form-control">
             </div>
             <div class="col-lg-6">
                 <label for="facebook_link">Facebook page link</label>
