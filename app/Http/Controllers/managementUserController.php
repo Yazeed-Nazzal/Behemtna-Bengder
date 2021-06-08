@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\UserInfo;
 
 class managementUserController extends Controller
 {
@@ -46,7 +47,9 @@ class managementUserController extends Controller
      */
     public function show($id)
     {
-        //
+
+        $user =  UserInfo::where('user_id', $id)->first();
+        return view('admin.users.show_user', compact('user'));
     }
 
     /**
