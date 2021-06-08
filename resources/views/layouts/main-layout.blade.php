@@ -44,7 +44,7 @@
                     <li><a class="nav-link scrollto" href="{{route('contact-as.index')}}">Contact</a></li>
                     @if (Route::has('login'))
                     @auth
-                    <li><a class="nav-link scrollto" href="{{ url('/home') }}">Login</a></li>
+                    <li><a class="nav-link scrollto" href="{{ url('/home') }}">{{auth()->user()->name}}</a></li>
                     @else
                     <li><a class="nav-link scrollto" href="{{ route('login') }}">Login</a></li>
                     @if (Route::has('register'))
